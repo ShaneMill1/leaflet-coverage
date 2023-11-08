@@ -119,9 +119,14 @@ export class ContinuousLegend extends L.Control {
     
     let palette = this._covLayer.palette
     let [low,high] = this._covLayer.paletteExtent
-    
-    $$('.legend-min', el).innerHTML = low.toFixed(2)
-    $$('.legend-max', el).innerHTML = high.toFixed(2)
+
+    try{
+      $$('.legend-min', el).innerHTML = low.toFixed(2)
+      $$('.legend-max', el).innerHTML = high.toFixed(2)
+    }catch{
+      $$('.legend-min', el).innerHTML = low
+      $$('.legend-max', el).innerHTML = high    
+    }
 
     let gradient = ''
     for (let i = 0; i < palette.steps; i++) {
